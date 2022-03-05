@@ -9,7 +9,7 @@ import { store } from "./store";
 export const Context: React.Context<any> = createContext(null);
 
 export const app: FirebaseApp | undefined = initializeApp({
-  apiKey: "AIzaSyCm3rwaxzhIjiSDGiRWFBB9v1PzVuJ_-RE",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,

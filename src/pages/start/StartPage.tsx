@@ -16,12 +16,12 @@ const StartPage: React.FC = () => {
   const visibleHandler = () => {
     setStartVisible(false);
     setContentVisible(true);
+    dispatch({ type: WordsActionsType.LOAD_WORDS_1 });
   };
 
   useEffect(() => {
     setStartVisible(true);
     setContentVisible(false);
-    dispatch({ type: WordsActionsType.LOAD_WORDS_1 });
   }, []);
 
   return (

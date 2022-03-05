@@ -8,6 +8,8 @@ export interface WordsType {
   page: number;
   word: string;
   transcription: string;
+  wordTranslate: undefined | string;
+  image: undefined | string;
 }
 
 export interface WordsStateType {

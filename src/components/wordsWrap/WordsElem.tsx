@@ -8,15 +8,33 @@ import {
   Transcription,
   Word,
 } from "../../pages/start/StartPage.style";
-import { useSelector } from "react-redux";
+import { useActions } from "../../utils/useActions";
+import { useTypedSelector } from "../../utils/useTypedSelector";
 
 const WordsElem = () => {
-  const state = useSelector((state: any) => state.words);
+  const { words } = useTypedSelector((state) => state.words);
+  const { setTranslateAction, setImageAction, setWordAction } = useActions();
+
+  const findMedia = (word: string) => {
+    const activeTranslate = words.find(
+      (item: WordsType) => item.word === word
+    )?.wordTranslate;
+    setTranslateAction(activeTranslate);
+    const activeImage = words.find(
+      (item: WordsType) => item.word === word
+    )?.image;
+    setImageAction(activeImage);
+  };
+
+  const mediaHandler = (item: WordsType) => {
+    setWordAction(item.word);
+    findMedia(item.word);
+  };
 
   return (
     <Items>
-      {state.words.map((item: WordsType) => (
-        <Item key={item.id}>
+      {words.map((item: WordsType) => (
+        <Item key={item.id} onClick={() => mediaHandler(item)}>
           <AudioIcon>
             <Svg xmlns="http://www.w3.org/2000/svg">
               <path

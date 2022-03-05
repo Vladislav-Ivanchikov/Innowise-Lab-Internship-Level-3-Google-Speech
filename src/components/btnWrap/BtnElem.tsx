@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Btn,
   BtnWrap,
@@ -7,15 +7,34 @@ import {
 } from "../../pages/start/StartPage.style";
 import { useDispatch } from "react-redux";
 import { WordsActionsType } from "../../types/words";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { useActions } from "../../utils/useActions";
+import { useTypedSelector } from "../../utils/useTypedSelector";
 
-const BtnElem = () => {
+const BtnElem: React.FC = () => {
   const dispatch = useDispatch();
+  const { finalTranscript } = useSpeechRecognition();
+  const { setRecordWordAction } = useActions();
+  const { recordWord } = useTypedSelector((state) => state.media);
+  let transcript = finalTranscript;
+
+  useEffect(() => {
+    setRecordWordAction(transcript);
+  }, [transcript]);
+
+  const resetHandler = () => {
+    dispatch({ type: WordsActionsType.LOAD_WORDS_1 });
+    SpeechRecognition.stopListening();
+  };
+
   return (
     <BtnWrap>
-      <Btn onClick={() => dispatch({ type: WordsActionsType.LOAD_WORDS_1 })}>
-        Restart
-      </Btn>
-      <SpeakBtn>Speak</SpeakBtn>
+      <Btn onClick={resetHandler}>Restart</Btn>
+      <SpeakBtn onClick={() => SpeechRecognition.startListening()}>
+        Speak
+      </SpeakBtn>
       <ResultsBtn to="/results">Results</ResultsBtn>
     </BtnWrap>
   );

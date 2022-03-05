@@ -5,5 +5,5 @@ import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-
+export type RootState = ReturnType<typeof store.getState>;
 sagaMiddleware.run(rootSaga);

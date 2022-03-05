@@ -1,14 +1,20 @@
 import React from "react";
 import { Image, ImageWrap, WordInput } from "../../pages/start/StartPage.style";
+import { useTypedSelector } from "../../utils/useTypedSelector";
 
 const ImageElem = () => {
+  const { imageSrc, activeTranslate, recordWord } = useTypedSelector(
+    (state) => state.media
+  );
+
   return (
     <ImageWrap>
       <Image
-        src="https://github.com/Vladislav-Ivanchikov/rslang-data/blob/master/files/01_0001.jpg"
+        src={/*imageSrc && require(`../../rslang-data/${imageSrc}`)*/ ""}
         alt=""
       />
-      <WordInput type="text" readOnly />
+      <p>{activeTranslate}</p>
+      <WordInput type="text" defaultValue={recordWord} />
     </ImageWrap>
   );
 };
