@@ -11,18 +11,15 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { useActions } from "../../utils/useActions";
-import { useTypedSelector } from "../../utils/useTypedSelector";
 
 const BtnElem: React.FC = () => {
   const dispatch = useDispatch();
   const { finalTranscript } = useSpeechRecognition();
   const { setRecordWordAction } = useActions();
-  const { recordWord } = useTypedSelector((state) => state.media);
-  let transcript = finalTranscript;
 
   useEffect(() => {
-    setRecordWordAction(transcript);
-  }, [transcript]);
+    setRecordWordAction(finalTranscript);
+  }, [finalTranscript]);
 
   const resetHandler = () => {
     dispatch({ type: WordsActionsType.LOAD_WORDS_1 });

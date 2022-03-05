@@ -10,25 +10,15 @@ import {
 } from "../../pages/start/StartPage.style";
 import { useActions } from "../../utils/useActions";
 import { useTypedSelector } from "../../utils/useTypedSelector";
+import { findMedia } from "../../utils/findMedia";
 
 const WordsElem = () => {
   const { words } = useTypedSelector((state) => state.words);
   const { setTranslateAction, setImageAction, setWordAction } = useActions();
 
-  const findMedia = (word: string) => {
-    const activeTranslate = words.find(
-      (item: WordsType) => item.word === word
-    )?.wordTranslate;
-    setTranslateAction(activeTranslate);
-    const activeImage = words.find(
-      (item: WordsType) => item.word === word
-    )?.image;
-    setImageAction(activeImage);
-  };
-
   const mediaHandler = (item: WordsType) => {
     setWordAction(item.word);
-    findMedia(item.word);
+    findMedia(item.word, words, setTranslateAction, setImageAction);
   };
 
   return (
