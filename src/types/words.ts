@@ -1,5 +1,10 @@
-export interface IWords {
-  words: WordsType[];
+import { MediaStateType } from "./media";
+import { ResultStateType } from "./result";
+
+export interface IState {
+  words: WordsStateType;
+  media: MediaStateType;
+  result: ResultStateType;
 }
 
 export interface WordsType {
@@ -13,7 +18,7 @@ export interface WordsType {
 }
 
 export interface WordsStateType {
-  words: [] | WordsType[];
+  words: WordsType[] | [];
 }
 
 export enum WordsActionsType {

@@ -8,9 +8,11 @@ import {
 } from "../../pages/start/StartPage.style";
 import { useDispatch } from "react-redux";
 import { WordsActionsType } from "../../types/words";
+import { useTypedSelector } from "../../utils/useTypedSelector";
 
 const ResElem = () => {
   const dispatch = useDispatch();
+  const { result } = useTypedSelector((state) => state.result);
 
   return (
     <Result>
@@ -28,14 +30,18 @@ const ResElem = () => {
           onClick={() => dispatch({ type: WordsActionsType.LOAD_WORDS_4 })}
         />
         <Point
-          onClick={() => dispatch({ type: WordsActionsType.LOAD_WORDS_5 })}
+          onClick={() =>
+            dispatch({ type: WordsActionsType.LOAD_WORDS_5, payload: 4 })
+          }
         />
         <Point
           onClick={() => dispatch({ type: WordsActionsType.LOAD_WORDS_6 })}
         />
       </Points>
       <Score>
-        <Star />
+        {result.map((star) => (
+          <Star key={star.word} />
+        ))}
       </Score>
     </Result>
   );

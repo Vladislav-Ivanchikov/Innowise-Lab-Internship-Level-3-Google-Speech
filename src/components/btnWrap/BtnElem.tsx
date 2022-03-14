@@ -23,7 +23,6 @@ const BtnElem: React.FC = () => {
 
   const resetHandler = () => {
     dispatch({ type: WordsActionsType.LOAD_WORDS_1 });
-    SpeechRecognition.stopListening();
   };
 
   return (
