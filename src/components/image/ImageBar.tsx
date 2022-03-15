@@ -5,27 +5,29 @@ import { useActions } from "../../utils/useActions";
 import { findMedia } from "../../utils/findMedia";
 import { findRecordWord } from "../../utils/findRecordWord";
 
-const ImageElem = () => {
+const ImageBar: React.FC = () => {
   const { imageSrc, activeTranslate, recordWord } = useTypedSelector(
     (state) => state.media
   );
   const { words } = useTypedSelector((state) => state.words);
-  const { result, wrong } = useTypedSelector((state) => state.result);
-  const { setTranslateAction, setImageAction, addResultString, pushWrong } =
+  const { result } = useTypedSelector((state) => state.result);
+  const { setTranslateAction, setImageAction, addResult, pushWrong } =
     useActions();
   const wordsArr = words.map((item) => ({
     word: item.word,
     transcription: item.transcription,
   }));
-
   const wrongArr = wordsArr.filter(
     ({ word: id1 }) => !result.some(({ word: id2 }) => id2 === id1)
   );
 
   useEffect(() => {
-    if (recordWord !== "") {
+    let repeat = result.some((item) => item.word === recordWord);
+    if (recordWord) {
       findMedia(recordWord, words, setTranslateAction, setImageAction);
-      findRecordWord(recordWord, wordsArr, result, addResultString);
+      if (!repeat) {
+        findRecordWord(recordWord, wordsArr, result, addResult);
+      }
     }
   }, [recordWord]);
 
@@ -38,7 +40,6 @@ const ImageElem = () => {
       {imageSrc ? (
         <Image
           src={`https://raw.githubusercontent.com/Vladislav-Ivanchikov/rslang-data/master/${imageSrc}`}
-          loading={"lazy"}
           alt=""
         />
       ) : (
@@ -50,4 +51,4 @@ const ImageElem = () => {
   );
 };
 
-export default ImageElem;
+export default ImageBar;

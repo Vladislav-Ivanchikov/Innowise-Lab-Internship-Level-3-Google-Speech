@@ -42,7 +42,7 @@ export const Result = styled.div`
   margin: 20px auto 60px;
 `;
 
-export const NavBar = styled(Result)`
+export const Navigate = styled(Result)`
   padding: 0 20px;
 `;
 

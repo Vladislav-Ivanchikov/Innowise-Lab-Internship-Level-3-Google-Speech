@@ -12,7 +12,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { useActions } from "../../utils/useActions";
 
-const BtnElem: React.FC = () => {
+const BtnBar: React.FC = () => {
   const dispatch = useDispatch();
   const { finalTranscript } = useSpeechRecognition();
   const { setRecordWordAction } = useActions();
@@ -36,4 +36,4 @@ const BtnElem: React.FC = () => {
   );
 };
 
-export default BtnElem;
+export default BtnBar;

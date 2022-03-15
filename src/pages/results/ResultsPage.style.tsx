@@ -48,7 +48,21 @@ export const AudioIconRes = styled(AudioIcon)`
   top: 8px;
 `;
 
-export const ResBtn = styled(ResultsBtn)`
+export const ResLink = styled(ResultsBtn)`
+  margin: 0 30px 0 0;
+  font-size: 20px;
+  padding: 10px 15px;
+  min-width: 160px;
+  color: rgba(14, 30, 37, 0.7);
+  background: transparent;
+  border: 1px solid rgba(14, 30, 37, 0.7);
+
+  &:hover {
+    background: rgba(180, 180, 180, 0.5);
+  }
+`;
+
+export const ReturnBtn = styled.button`
   margin: 0 30px 0 0;
   font-size: 20px;
   padding: 10px 15px;

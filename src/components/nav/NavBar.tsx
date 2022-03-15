@@ -1,27 +1,27 @@
-import { ResBtn } from "../../pages/results/ResultsPage.style";
-import { NavBar } from "../../pages/start/StartPage.style";
+import { ResLink } from "../../pages/results/ResultsPage.style";
+import { Navigate } from "../../pages/start/StartPage.style";
 import React, { useContext } from "react";
 import { Context } from "../../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useAuth } from "../../context/AuthContext";
 
-const NavElem = () => {
+const NavBar: React.FC = () => {
   const { auth } = useContext(Context);
   let [user] = useAuthState(auth);
   const { logOut } = useAuth();
 
   return (
-    <NavBar>
+    <Navigate>
       <div>
         <p>{user ? auth.currentUser.email : ""}</p>
       </div>
       <div>
-        <ResBtn to="/signin" onClick={logOut}>
+        <ResLink to="/signin" onClick={logOut}>
           Log out
-        </ResBtn>
+        </ResLink>
       </div>
-    </NavBar>
+    </Navigate>
   );
 };
 
-export default NavElem;
+export default NavBar;

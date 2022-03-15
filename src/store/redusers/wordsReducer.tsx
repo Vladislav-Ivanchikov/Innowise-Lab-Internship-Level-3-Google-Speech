@@ -4,7 +4,7 @@ import {
   WordsStateType,
 } from "../../types/words";
 
-export const initialState: WordsStateType = {
+const initialState: WordsStateType = {
   words: [],
 };
 

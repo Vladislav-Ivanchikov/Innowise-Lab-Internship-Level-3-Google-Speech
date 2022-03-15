@@ -12,7 +12,7 @@ import { useActions } from "../../utils/useActions";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 import { findMedia } from "../../utils/findMedia";
 
-const WordsElem = () => {
+const WordsBar: React.FC = () => {
   const { words } = useTypedSelector((state) => state.words);
   const { setTranslateAction, setImageAction, setWordAction } = useActions();
 
@@ -42,4 +42,4 @@ const WordsElem = () => {
   );
 };
 
-export default WordsElem;
+export default WordsBar;

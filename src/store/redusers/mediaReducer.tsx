@@ -4,7 +4,7 @@ import {
   MediaStateType,
 } from "../../types/media";
 
-export const initialState: MediaStateType = {
+const initialState: MediaStateType = {
   activeWord: "",
   recordWord: "",
   activeTranslate: "",

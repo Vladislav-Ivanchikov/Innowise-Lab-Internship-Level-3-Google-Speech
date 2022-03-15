@@ -1,6 +1,6 @@
 import { ResActionTypes } from "../../types/result";
 
-export const addResultString = (word: object) => {
+export const addResult = (word: object) => {
   return { type: ResActionTypes.ADD_RESULT_STRING, payload: word };
 };
 

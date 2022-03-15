@@ -4,7 +4,7 @@ import {
   ResultStateType,
 } from "../../types/result";
 
-export const initialState: ResultStateType = {
+const initialState: ResultStateType = {
   result: [],
   wrong: [],
 };

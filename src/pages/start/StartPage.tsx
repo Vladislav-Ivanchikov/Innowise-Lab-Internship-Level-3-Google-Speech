@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Btn, Container, Start } from "./StartPage.style";
 import { useDispatch } from "react-redux";
 import { WordsActionsType } from "../../types/words";
-import NavElem from "../../components/navBar/NavElem";
-import ResElem from "../../components/resBar/ResElem";
-import ImageElem from "../../components/imageWrap/ImageElem";
-import WordsElem from "../../components/wordsWrap/WordsElem";
-import BtnElem from "../../components/btnWrap/BtnElem";
+import NavBar from "../../components/nav/NavBar";
+import InfoBar from "../../components/info/InfoBar";
+import ImageBar from "../../components/image/ImageBar";
+import WordsBar from "../../components/words/WordsBar";
+import BtnBar from "../../components/btn/BtnBar";
+import { useTypedSelector } from "../../utils/useTypedSelector";
+import { useActions } from "../../utils/useActions";
 
 const StartPage: React.FC = () => {
-  const [startVisible, setStartVisible] = useState<boolean>(true);
-  const [contentVisible, setContentVisible] = useState<boolean>(false);
+  const { startVisible, contentVisible, isReturn } = useTypedSelector(
+    (state) => state.visible
+  );
+  const { setStartVisible, setContentVisible } = useActions();
   const dispatch = useDispatch();
 
   const visibleHandler = () => {
@@ -20,8 +24,12 @@ const StartPage: React.FC = () => {
   };
 
   useEffect(() => {
-    setStartVisible(true);
-    setContentVisible(false);
+    if (!isReturn) {
+      setStartVisible(true);
+      setContentVisible(false);
+    } else {
+      setContentVisible(true);
+    }
   }, []);
 
   return (
@@ -34,11 +42,11 @@ const StartPage: React.FC = () => {
         </p>
       </Start>
       <Container visible={contentVisible}>
-        <NavElem />
-        <ResElem />
-        <ImageElem />
-        <WordsElem />
-        <BtnElem />
+        <NavBar />
+        <InfoBar />
+        <ImageBar />
+        <WordsBar />
+        <BtnBar />
       </Container>
     </div>
   );

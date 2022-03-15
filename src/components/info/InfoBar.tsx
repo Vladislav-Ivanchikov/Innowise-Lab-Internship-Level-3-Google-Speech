@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { WordsActionsType } from "../../types/words";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 
-const ResElem = () => {
+const InfoBar: React.FC = () => {
   const dispatch = useDispatch();
   const { result } = useTypedSelector((state) => state.result);
 
@@ -47,4 +47,4 @@ const ResElem = () => {
   );
 };
 
-export default ResElem;
+export default InfoBar;
