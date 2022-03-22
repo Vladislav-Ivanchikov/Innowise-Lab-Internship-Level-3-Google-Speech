@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { WordsType } from "../../types/words";
 import {
   AudioIcon,
@@ -11,20 +11,46 @@ import {
 import { useActions } from "../../utils/useActions";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 import { findMedia } from "../../utils/findMedia";
+import { audioPlay } from "../../utils/audioPlay";
 
 const WordsBar: React.FC = () => {
   const { words } = useTypedSelector((state) => state.words);
-  const { setTranslateAction, setImageAction, setWordAction } = useActions();
+  const { isReturn } = useTypedSelector((state) => state.visible);
+  const { recordWord } = useTypedSelector((state) => state.media);
+
+  const {
+    setTranslateAction,
+    setImageAction,
+    setWordAction,
+    clearResults,
+    setRecordWordAction,
+    setReturn,
+  } = useActions();
 
   const mediaHandler = (item: WordsType) => {
     setWordAction(item.word);
     findMedia(item.word, words, setTranslateAction, setImageAction);
+    audioPlay(item.audio);
   };
+
+  useEffect(() => {
+    if (!isReturn) {
+      clearResults();
+      setImageAction(undefined);
+      setRecordWordAction("");
+      setTranslateAction("");
+    }
+    setReturn(false);
+  }, [words]);
 
   return (
     <Items>
       {words.map((item: WordsType) => (
-        <Item key={item.id} onClick={() => mediaHandler(item)}>
+        <Item
+          key={item.id}
+          onClick={() => mediaHandler(item)}
+          fill={recordWord === item.word ? "green" : "white"}
+        >
           <AudioIcon>
             <Svg xmlns="http://www.w3.org/2000/svg">
               <path

@@ -35,11 +35,13 @@ const StartPage: React.FC = () => {
   return (
     <div>
       <Start visible={startVisible}>
+        <h1>SPEAKIT</h1>
+        <span>
+          Click on the words to hear them sound.
+          <br />
+          Click on the button and speak the words into the microphone.
+        </span>
         <Btn onClick={visibleHandler}>START</Btn>
-        <p>
-          Click on the words to hear them sound. Click on the button and speak
-          the words into the microphone.
-        </p>
       </Start>
       <Container visible={contentVisible}>
         <NavBar />

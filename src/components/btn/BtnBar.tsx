@@ -15,7 +15,12 @@ import { useActions } from "../../utils/useActions";
 const BtnBar: React.FC = () => {
   const dispatch = useDispatch();
   const { finalTranscript } = useSpeechRecognition();
-  const { setRecordWordAction } = useActions();
+  const {
+    setRecordWordAction,
+    setImageAction,
+    setTranslateAction,
+    clearResults,
+  } = useActions();
 
   useEffect(() => {
     setRecordWordAction(finalTranscript);
@@ -23,6 +28,10 @@ const BtnBar: React.FC = () => {
 
   const resetHandler = () => {
     dispatch({ type: WordsActionsType.LOAD_WORDS_1 });
+    clearResults();
+    setImageAction(undefined);
+    setRecordWordAction("");
+    setTranslateAction("");
   };
 
   return (

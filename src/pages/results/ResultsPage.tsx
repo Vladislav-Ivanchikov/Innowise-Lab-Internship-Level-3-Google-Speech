@@ -1,5 +1,5 @@
 import React from "react";
-import { ReturnBtn, ResContainer, ResLink, Results } from "./ResultsPage.style";
+import { ResContainer, ResLink, Results } from "./ResultsPage.style";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 import RightAnswer from "../../components/result/RightAnswer";
 import WrongAnswer from "../../components/result/WrongAnswer";
@@ -26,6 +26,7 @@ const ResultsPage: React.FC = () => {
             Return
           </ResLink>
           <ResLink to="/">New game</ResLink>
+          <ResLink to="/statistic">Users statistic</ResLink>
         </div>
       </ResContainer>
     </Results>

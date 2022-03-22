@@ -6,6 +6,7 @@ import {
   ResWrap,
 } from "../../pages/results/ResultsPage.style";
 import { Svg, Transcription, Word } from "../../pages/start/StartPage.style";
+import { audioPlay } from "../../utils/audioPlay";
 
 const WrongAnswer: React.FC<{ wrong: any[] }> = ({ wrong }) => {
   return (
@@ -14,7 +15,7 @@ const WrongAnswer: React.FC<{ wrong: any[] }> = ({ wrong }) => {
         Errors <ErrorNums>{wrong.length}</ErrorNums>
       </p>
       {wrong.map((item) => (
-        <ResItem key={item.transcription}>
+        <ResItem key={item.transcription} onClick={() => audioPlay(item.audio)}>
           <AudioIconRes>
             <Svg xmlns="http://www.w3.org/2000/svg">
               <path

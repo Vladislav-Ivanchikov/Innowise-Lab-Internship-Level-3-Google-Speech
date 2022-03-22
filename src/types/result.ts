@@ -6,6 +6,7 @@ export interface ResultStateType {
 export enum ResActionTypes {
   ADD_RESULT_STRING = "ADD_RESULT_STRING",
   PUSH_WRONG = "PUSH_WRONG",
+  CLEAR_RESULTS = "CLEAR_RESULTS",
 }
 
 export interface ResAction {
@@ -18,4 +19,8 @@ export interface WrongAction {
   payload: object[];
 }
 
-export type ResultsActions = ResAction | WrongAction;
+export interface ClearAction {
+  type: ResActionTypes.CLEAR_RESULTS;
+}
+
+export type ResultsActions = ResAction | WrongAction | ClearAction;

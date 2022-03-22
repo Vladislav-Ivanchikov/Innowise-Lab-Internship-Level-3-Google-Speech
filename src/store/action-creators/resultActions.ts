@@ -7,3 +7,7 @@ export const addResult = (word: object) => {
 export const pushWrong = (wrong: any[]) => {
   return { type: ResActionTypes.PUSH_WRONG, payload: wrong };
 };
+
+export const clearResults = () => {
+  return { type: ResActionTypes.CLEAR_RESULTS };
+};

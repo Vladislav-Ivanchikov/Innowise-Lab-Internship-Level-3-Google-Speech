@@ -4,6 +4,7 @@ import Registration from "../pages/auth/Registration";
 import SignIn from "../pages/auth/SignIn";
 import StartPage from "../pages/start/StartPage";
 import ResultsPage from "../pages/results/ResultsPage";
+import StatisticPage from "../pages/statistic/StatisticPage";
 
 export const privateRoutes: IRoute[] = [
   {
@@ -13,6 +14,10 @@ export const privateRoutes: IRoute[] = [
   {
     path: RouteName.RESULTS_ROUTE,
     Component: <ResultsPage />,
+  },
+  {
+    path: RouteName.STATISTIC_ROUTE,
+    Component: <StatisticPage />,
   },
 ];
 

@@ -15,6 +15,8 @@ export const resultReduser = (state = initialState, action: ResultsActions) => {
       return { ...state, result: [...state.result, action.payload] };
     case ResActionTypes.PUSH_WRONG:
       return { ...state, wrong: action.payload };
+    case ResActionTypes.CLEAR_RESULTS:
+      return { result: [], wrong: [] };
     default:
       return state;
   }

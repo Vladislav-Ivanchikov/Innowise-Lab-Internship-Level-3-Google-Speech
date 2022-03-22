@@ -53,7 +53,11 @@ export const Points = styled.ul`
   margin: 0;
 `;
 
-export const Point = styled.li`
+interface PointProps {
+  active: boolean | string;
+}
+
+export const Point = styled.li<PointProps>`
   position: relative;
   width: 7px;
   height: 7px;
@@ -69,6 +73,10 @@ export const Point = styled.li`
   margin-right: 10px;
   cursor: pointer;
   transition: 0.5s;
+  box-shadow: ${({ active }) =>
+    active === "active"
+      ? "0 0 0 2px #00c49d, inset 0 0 0 2px #ffffff,inset 0 0 0 3px #00c49d"
+      : "0"};
 
   &:hover {
     box-shadow: 0 0 0 2px #00c49d, inset 0 0 0 2px #ffffff,
@@ -130,7 +138,11 @@ export const Items = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Item = styled.div`
+interface ItemProp {
+  fill: string;
+}
+
+export const Item = styled.div<ItemProp>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -144,7 +156,8 @@ export const Item = styled.div`
   margin: 10px;
   border: 1px solid rgb(206, 212, 218);
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${(props) =>
+    props.fill === "green" ? "rgba(0,196,157,0.7)" : "white"};
   transition: 0.3s;
 
   &:hover {
@@ -152,7 +165,7 @@ export const Item = styled.div`
   }
 `;
 
-export const AudioIcon = styled.span`
+export const AudioIcon = styled.div`
   position: absolute;
   top: 22px;
   left: 10px;

@@ -16,6 +16,7 @@ const ImageBar: React.FC = () => {
   const wordsArr = words.map((item) => ({
     word: item.word,
     transcription: item.transcription,
+    audio: item.audio,
   }));
   const wrongArr = wordsArr.filter(
     ({ word: id1 }) => !result.some(({ word: id2 }) => id2 === id1)
@@ -37,16 +38,16 @@ const ImageBar: React.FC = () => {
 
   return (
     <ImageWrap>
-      {imageSrc ? (
-        <Image
-          src={`https://raw.githubusercontent.com/Vladislav-Ivanchikov/rslang-data/master/${imageSrc}`}
-          alt=""
-        />
-      ) : (
-        <img width="390px" height="260px" alt="" />
-      )}
+      <Image
+        src={
+          imageSrc
+            ? `https://raw.githubusercontent.com/Vladislav-Ivanchikov/rslang-data/master/${imageSrc}`
+            : `https://speakit.netlify.app/img/blank.jpg`
+        }
+        alt=""
+      />
       <p>{activeTranslate}</p>
-      <WordInput type="text" defaultValue={recordWord} />
+      <WordInput type="text" value={recordWord} readOnly />
     </ImageWrap>
   );
 };

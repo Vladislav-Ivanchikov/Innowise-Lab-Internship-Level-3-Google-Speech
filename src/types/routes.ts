@@ -5,6 +5,7 @@ export enum RouteName {
   SIGNIN_ROUTE = "/signin",
   REG_ROUTE = "/registration",
   RESULTS_ROUTE = "/results",
+  STATISTIC_ROUTE = "/statistic",
 }
 
 export interface IRoute {

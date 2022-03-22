@@ -15,10 +15,12 @@ export interface WordsType {
   transcription: string;
   wordTranslate: undefined | string;
   image: undefined | string;
+  audio: undefined | string;
 }
 
 export interface WordsStateType {
   words: WordsType[] | [];
+  level: number;
 }
 
 export enum WordsActionsType {
