@@ -154,10 +154,13 @@ export const Item = styled.div<ItemProp>`
   min-width: 200px;
   min-height: 70px;
   margin: 10px;
-  border: 1px solid rgb(206, 212, 218);
-  border-radius: 5px;
+  border: ${(props) =>
+    props.fill === "green"
+      ? "1px solid rgb(0, 173, 159)"
+      : "1px solid rgb(206, 212, 218)"};
   background-color: ${(props) =>
-    props.fill === "green" ? "rgba(0,196,157,0.7)" : "white"};
+    props.fill === "green" ? "rgba(0, 173, 159, .15)" : "white"};
+  border-radius: 5px;
   transition: 0.3s;
 
   &:hover {

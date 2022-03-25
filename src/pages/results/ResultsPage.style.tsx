@@ -9,7 +9,7 @@ export const ResContainer = styled.div`
   width: 100%;
   max-width: 780px;
   min-height: 600px;
-  padding: 40px 100px;
+  padding: 30px 100px;
   text-align: left;
   background-color: #fff;
   border-radius: 8px;

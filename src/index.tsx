@@ -2,9 +2,10 @@ import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import App from "./components/app/App";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { getFirestore } from "firebase/firestore";
+import App from "./components/app/App";
 
 export const Context: React.Context<any> = createContext(null);
 
@@ -18,10 +19,11 @@ export const app: FirebaseApp | undefined = initializeApp({
 });
 
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Context.Provider value={{ auth }}>
+    <Context.Provider value={{ auth, db }}>
       <App />
     </Context.Provider>
   </Provider>,

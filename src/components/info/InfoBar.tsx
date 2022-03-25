@@ -7,11 +7,11 @@ import {
   Star,
 } from "../../pages/start/StartPage.style";
 import { useDispatch } from "react-redux";
-import { WordsActionsType } from "../../types/words";
+import { IState, WordsActionsType } from "../../types/words";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 
 const InfoBar: React.FC = () => {
-  const { result } = useTypedSelector((state) => state.result);
+  const { result } = useTypedSelector((state: IState) => state.result);
   const { level } = useTypedSelector((state) => state.words);
   const dispatch = useDispatch();
 

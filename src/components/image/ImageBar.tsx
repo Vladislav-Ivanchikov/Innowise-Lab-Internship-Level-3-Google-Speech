@@ -4,20 +4,23 @@ import { useTypedSelector } from "../../utils/useTypedSelector";
 import { useActions } from "../../utils/useActions";
 import { findMedia } from "../../utils/findMedia";
 import { findRecordWord } from "../../utils/findRecordWord";
+import { IState, WordsType } from "../../types/words";
 
 const ImageBar: React.FC = () => {
   const { imageSrc, activeTranslate, recordWord } = useTypedSelector(
     (state) => state.media
   );
   const { words } = useTypedSelector((state) => state.words);
-  const { result } = useTypedSelector((state) => state.result);
+  const { result } = useTypedSelector((state: IState) => state.result);
   const { setTranslateAction, setImageAction, addResult, pushWrong } =
     useActions();
-  const wordsArr = words.map((item) => ({
+
+  const wordsArr = words.map((item: WordsType) => ({
     word: item.word,
     transcription: item.transcription,
     audio: item.audio,
   }));
+
   const wrongArr = wordsArr.filter(
     ({ word: id1 }) => !result.some(({ word: id2 }) => id2 === id1)
   );
