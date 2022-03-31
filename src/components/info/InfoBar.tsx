@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   Point,
   Points,
@@ -9,16 +9,10 @@ import {
 import { useDispatch } from "react-redux";
 import { IState, WordsActionsType } from "../../types/words";
 import { useTypedSelector } from "../../utils/useTypedSelector";
-import {
-  collection,
-  doc,
-  getDocs,
-  updateDoc,
-  arrayUnion,
-} from "firebase/firestore";
+
 import { Context } from "../../index";
-import { pointsCounter } from "../../utils/pointsCounter";
 import { useActions } from "../../utils/useActions";
+import { calculateStatistic } from "../../utils/calculateStatistic";
 
 const InfoBar: React.FC = () => {
   const { result, wrong } = useTypedSelector((state: IState) => state.result);
@@ -31,113 +25,78 @@ const InfoBar: React.FC = () => {
   const dispatch = useDispatch();
   const dbArr: any[] = [];
 
-  const level2Handler = async () => {
-    try {
-      const statRef = doc(db, "statistic", statId);
-      await updateDoc(statRef, {
-        group: arrayUnion(level),
-        right: usersRes[usersRes.length - 1].right + result.length,
-        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
-        points:
-          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
-      });
-      const resultData = await getDocs(collection(db, "statistic"));
-      resultData.forEach((doc) => {
-        dbArr.push(doc.data());
-      });
-      pushUsersRes(dbArr);
-      clearResults();
-    } catch (e) {
-      console.log(e);
-    }
+  const level2Handler = () => {
+    calculateStatistic(
+      db,
+      statId,
+      level,
+      usersRes,
+      result,
+      wrong,
+      dbArr,
+      pushUsersRes,
+      clearResults
+    );
     dispatch({ type: WordsActionsType.LOAD_WORDS_2 });
   };
 
-  const level3Handler = async () => {
-    try {
-      const statRef = doc(db, "statistic", statId);
-      await updateDoc(statRef, {
-        group: arrayUnion(level),
-        right: usersRes[usersRes.length - 1].right + result.length,
-        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
-        points:
-          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
-      });
-      const resultData = await getDocs(collection(db, "statistic"));
-      resultData.forEach((doc) => {
-        dbArr.push(doc.data());
-      });
-      pushUsersRes(dbArr);
-      clearResults();
-    } catch (e) {
-      alert(e);
-    }
+  const level3Handler = () => {
+    calculateStatistic(
+      db,
+      statId,
+      level,
+      usersRes,
+      result,
+      wrong,
+      dbArr,
+      pushUsersRes,
+      clearResults
+    );
     dispatch({ type: WordsActionsType.LOAD_WORDS_3 });
   };
 
   const level4Handler = async () => {
-    try {
-      const statRef = doc(db, "statistic", statId);
-      await updateDoc(statRef, {
-        group: arrayUnion(level),
-        right: usersRes[usersRes.length - 1].right + result.length,
-        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
-        points:
-          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
-      });
-      const resultData = await getDocs(collection(db, "statistic"));
-      resultData.forEach((doc) => {
-        dbArr.push(doc.data());
-      });
-      pushUsersRes(dbArr);
-      clearResults();
-    } catch (e) {
-      alert(e);
-    }
+    calculateStatistic(
+      db,
+      statId,
+      level,
+      usersRes,
+      result,
+      wrong,
+      dbArr,
+      pushUsersRes,
+      clearResults
+    );
     dispatch({ type: WordsActionsType.LOAD_WORDS_4 });
   };
 
   const level5Handler = async () => {
-    try {
-      const statRef = doc(db, "statistic", statId);
-      await updateDoc(statRef, {
-        group: arrayUnion(level),
-        right: usersRes[usersRes.length - 1].right + result.length,
-        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
-        points:
-          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
-      });
-      const resultData = await getDocs(collection(db, "statistic"));
-      resultData.forEach((doc) => {
-        dbArr.push(doc.data());
-      });
-      pushUsersRes(dbArr);
-      clearResults();
-    } catch (e) {
-      alert(e);
-    }
+    calculateStatistic(
+      db,
+      statId,
+      level,
+      usersRes,
+      result,
+      wrong,
+      dbArr,
+      pushUsersRes,
+      clearResults
+    );
     dispatch({ type: WordsActionsType.LOAD_WORDS_5 });
   };
 
   const level6Handler = async () => {
-    try {
-      const statRef = doc(db, "statistic", statId);
-      await updateDoc(statRef, {
-        group: arrayUnion(level),
-        right: usersRes[usersRes.length - 1].right + result.length,
-        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
-        points:
-          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
-      });
-      const resultData = await getDocs(collection(db, "statistic"));
-      resultData.forEach((doc) => {
-        dbArr.push(doc.data());
-      });
-      pushUsersRes(dbArr);
-      clearResults();
-    } catch (e) {
-      alert(e);
-    }
+    calculateStatistic(
+      db,
+      statId,
+      level,
+      usersRes,
+      result,
+      wrong,
+      dbArr,
+      pushUsersRes,
+      clearResults
+    );
     dispatch({ type: WordsActionsType.LOAD_WORDS_6 });
   };
 

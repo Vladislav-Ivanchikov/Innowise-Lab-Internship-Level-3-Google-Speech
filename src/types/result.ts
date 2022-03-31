@@ -5,8 +5,8 @@ export interface ResultType {
 }
 
 export interface ResultStateType {
-  result: any[];
-  wrong: any[];
+  result: ResultType[];
+  wrong: ResultType[];
 }
 
 export enum ResActionTypes {
@@ -17,12 +17,12 @@ export enum ResActionTypes {
 
 export interface ResAction {
   type: ResActionTypes.ADD_RESULT_STRING;
-  payload: object;
+  payload: ResultType;
 }
 
 export interface WrongAction {
   type: ResActionTypes.PUSH_WRONG;
-  payload: object[];
+  payload: ResultType[];
 }
 
 export interface ClearAction {

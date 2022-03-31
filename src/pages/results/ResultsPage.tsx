@@ -6,15 +6,8 @@ import RightAnswer from "../../components/result/RightAnswer";
 import WrongAnswer from "../../components/result/WrongAnswer";
 import { IState } from "../../types/words";
 import { Context } from "../../index";
-import {
-  arrayUnion,
-  collection,
-  doc,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
-import { pointsCounter } from "../../utils/pointsCounter";
 import { setResId } from "../../store/action-creators/statisticActions";
+import { calculateStatistic } from "../../utils/calculateStatistic";
 
 const ResultsPage: React.FC = () => {
   const { result, wrong } = useTypedSelector((state: IState) => state.result);
@@ -39,25 +32,18 @@ const ResultsPage: React.FC = () => {
   const dbArr: any[] = [];
 
   const resultHandler = async () => {
-    try {
-      const statRef = doc(db, "statistic", statId);
-      await updateDoc(statRef, {
-        group: arrayUnion(level),
-        right: usersRes[usersRes.length - 1].right + result.length,
-        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
-        points:
-          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
-      });
-      const resultData = await getDocs(collection(db, "statistic"));
-      resultData.forEach((doc) => {
-        dbArr.push(doc.data());
-      });
-      pushUsersRes(dbArr);
-      clearResults();
-      setResId("");
-    } catch (e) {
-      alert(e);
-    }
+    calculateStatistic(
+      db,
+      statId,
+      level,
+      usersRes,
+      result,
+      wrong,
+      dbArr,
+      pushUsersRes,
+      clearResults
+    );
+    setResId("");
   };
 
   return (
