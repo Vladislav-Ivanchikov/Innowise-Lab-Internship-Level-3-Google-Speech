@@ -1,10 +1,12 @@
 import { MediaStateType } from "./media";
 import { ResultStateType } from "./result";
+import { StatisticStateType } from "./statistic";
 
 export interface IState {
   words: WordsStateType;
   media: MediaStateType;
   result: ResultStateType;
+  statistic: StatisticStateType;
 }
 
 export interface WordsType {

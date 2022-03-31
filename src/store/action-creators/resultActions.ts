@@ -8,10 +8,6 @@ export const pushWrong = (wrong: object[]) => {
   return { type: ResActionTypes.PUSH_WRONG, payload: wrong };
 };
 
-export const pushUsersRes = (usersRes: object[]) => {
-  return { type: ResActionTypes.PUSH_USERS_RES, payload: usersRes };
-};
-
 export const clearResults = () => {
   return { type: ResActionTypes.CLEAR_RESULTS };
 };

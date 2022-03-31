@@ -45,7 +45,7 @@ const ImageBar: React.FC = () => {
         src={
           imageSrc
             ? `https://raw.githubusercontent.com/Vladislav-Ivanchikov/rslang-data/master/${imageSrc}`
-            : `https://speakit.netlify.app/img/blank.jpg`
+            : `https://previews.123rf.com/images/melpomen/melpomen1703/melpomen170300239/73125787-tekst-w-j%C4%99zyku-angielskim-z-kolorowymi-ilustracjami-na-%C5%BC%C3%B3%C5%82tym-tle.jpg`
         }
         alt=""
       />

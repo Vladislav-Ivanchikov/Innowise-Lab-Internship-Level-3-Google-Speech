@@ -30,7 +30,7 @@ export const Start = styled.div`
   text-align: center;
   padding: 10px;
   transition: 0.5s;
-  background-image: url(https://speakit.netlify.app/img/bg.png);
+  background-image: url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-english-green-solid-color-background.jpg);
   background-size: cover;
 `;
 
@@ -93,7 +93,7 @@ export const Score = styled.div`
 export const Star = styled.div`
   width: 40px;
   height: 40px;
-  background-image: url(https://speakit.netlify.app/img/star.svg);
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/1/1f/Green_star_41-108-41.svg);
   background-size: 40px 40px;
 `;
 
@@ -125,7 +125,7 @@ export const WordInput = styled.input`
   color: rgba(14, 30, 37, 0.7);
   text-align: center;
   font-size: 22px;
-  background-image: url(https://speakit.netlify.app/img/microphone.svg);
+  background-image: url(https://www.pngrepo.com/png/263824/512/speaker.png);
   background-repeat: no-repeat;
   background-size: 20px;
   background-position: 10px 15px;

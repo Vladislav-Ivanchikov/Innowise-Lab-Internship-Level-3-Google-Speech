@@ -1,28 +1,37 @@
 import React from "react";
-import { ResContainer, Results } from "../results/ResultsPage.style";
+import {
+  ErrorNums,
+  ResContainer,
+  ResLink,
+  Results,
+  SuccessNums,
+} from "../results/ResultsPage.style";
 import { StatItem, StatRow } from "./StatisticPage.style";
+import { UserStatType } from "../../types/statistic";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 import { IState } from "../../types/words";
-import { StatisticType } from "../../types/result";
 
 const StatisticPage: React.FC = () => {
-  const { usersRes } = useTypedSelector((state: IState) => state.result);
+  const { usersRes } = useTypedSelector((state: IState) => state.statistic);
+  usersRes.sort((a, b) => b.points - a.points);
 
   return (
     <Results visible={true}>
       <ResContainer>
         <h3>Users statistic</h3>
         {usersRes &&
-          usersRes.map((item: StatisticType) => (
+          usersRes.map((item: UserStatType) => (
             <StatRow key={item.id}>
               <StatItem>{item.userName}</StatItem>
               <StatItem>
-                {item.right}/{item.wrong}
+                <SuccessNums>{item.right}</SuccessNums> |
+                <ErrorNums>{item.wrong}</ErrorNums>
               </StatItem>
-              <StatItem>{item.group}</StatItem>
+              <StatItem>{item.group.toString()}</StatItem>
               <StatItem>{item.date}</StatItem>
             </StatRow>
           ))}
+        <ResLink to="/">New game</ResLink>
       </ResContainer>
     </Results>
   );

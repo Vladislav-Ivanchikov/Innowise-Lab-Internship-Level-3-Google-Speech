@@ -1,46 +1,60 @@
 import React, { useContext } from "react";
 import { ResContainer, ResLink, Results } from "./ResultsPage.style";
 import { useTypedSelector } from "../../utils/useTypedSelector";
-import { collection, addDoc, getDocs } from "firebase/firestore";
 import { useActions } from "../../utils/useActions";
-import { Context } from "../../index";
 import RightAnswer from "../../components/result/RightAnswer";
 import WrongAnswer from "../../components/result/WrongAnswer";
 import { IState } from "../../types/words";
+import { Context } from "../../index";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
+import { pointsCounter } from "../../utils/pointsCounter";
+import { setResId } from "../../store/action-creators/statisticActions";
 
 const ResultsPage: React.FC = () => {
   const { result, wrong } = useTypedSelector((state: IState) => state.result);
   const { resultVisible } = useTypedSelector((state) => state.visible);
   const { level } = useTypedSelector((state) => state.words);
-  const { setResultVisible, setContentVisible, setReturn, pushUsersRes } =
-    useActions();
-  const { db, auth } = useContext(Context);
-
-  const usersRes: any[] = [];
-
+  const { usersRes, statId } = useTypedSelector(
+    (state: IState) => state.statistic
+  );
+  const {
+    setResultVisible,
+    setContentVisible,
+    setReturn,
+    pushUsersRes,
+    clearResults,
+  } = useActions();
+  const { db } = useContext(Context);
   const visibleHandler = () => {
     setResultVisible(false);
     setContentVisible(true);
     setReturn(true);
   };
+  const dbArr: any[] = [];
 
-  const pushResToDB = async () => {
-    const data = {
-      id: Date.now(),
-      userName: auth.currentUser.email,
-      right: result.length,
-      wrong: wrong.length,
-      group: [level],
-      date: new Date().toLocaleDateString(),
-    };
-
+  const resultHandler = async () => {
     try {
-      await addDoc(collection(db, "usersRes"), data);
-      const resultData = await getDocs(collection(db, "usersRes"));
-      resultData.forEach((doc) => {
-        usersRes.push(doc.data());
+      const statRef = doc(db, "statistic", statId);
+      await updateDoc(statRef, {
+        group: arrayUnion(level),
+        right: usersRes[usersRes.length - 1].right + result.length,
+        wrong: usersRes[usersRes.length - 1].wrong + wrong.length,
+        points:
+          usersRes[usersRes.length - 1].points + pointsCounter(result, level),
       });
-      pushUsersRes(usersRes);
+      const resultData = await getDocs(collection(db, "statistic"));
+      resultData.forEach((doc) => {
+        dbArr.push(doc.data());
+      });
+      pushUsersRes(dbArr);
+      clearResults();
+      setResId("");
     } catch (e) {
       alert(e);
     }
@@ -55,8 +69,10 @@ const ResultsPage: React.FC = () => {
           <ResLink onClick={visibleHandler} to="/">
             Return
           </ResLink>
-          <ResLink to="/">New game</ResLink>
-          <ResLink to="/statistic" onClick={pushResToDB}>
+          <ResLink to="/" onClick={() => pushUsersRes([])}>
+            New game
+          </ResLink>
+          <ResLink to="/statistic" onClick={resultHandler}>
             Users statistic
           </ResLink>
         </div>
