@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { privateRoutes, publicRoutes } from "../../utils/routes";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Context } from "../../index";
+import { privateRoutes, publicRoutes } from "../../utils/routes";
 import { RouteName } from "../../types/routes";
 
 const AppRouter: React.FC = () => {

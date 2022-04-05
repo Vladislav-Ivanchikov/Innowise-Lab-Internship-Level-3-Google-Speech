@@ -1,4 +1,7 @@
 import React from "react";
+import { useTypedSelector } from "../../utils/useTypedSelector";
+import { UserStatType } from "../../types/statistic";
+import { IState } from "../../types/words";
 import {
   ErrorNums,
   ResContainer,
@@ -7,9 +10,6 @@ import {
   SuccessNums,
 } from "../results/ResultsPage.style";
 import { StatItem, StatRow } from "./StatisticPage.style";
-import { UserStatType } from "../../types/statistic";
-import { useTypedSelector } from "../../utils/useTypedSelector";
-import { IState } from "../../types/words";
 
 const StatisticPage: React.FC = () => {
   const { usersRes } = useTypedSelector((state: IState) => state.statistic);

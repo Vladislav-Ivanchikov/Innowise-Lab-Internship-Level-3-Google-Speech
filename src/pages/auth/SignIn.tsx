@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import { Context } from "../../index";
-import Swal from "sweetalert2";
-import { Btn, Start } from "../start/StartPage.style";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { Context } from "../../index";
+import { useAuth } from "../../context/AuthContext";
+import { Btn, Start } from "../start/StartPage.style";
 import { FormWrap, Input } from "./Form.style";
 
 const SignIn: React.FC = (): JSX.Element => {

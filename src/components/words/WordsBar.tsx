@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
 import { WordsType } from "../../types/words";
+import { useTypedSelector } from "../../utils/useTypedSelector";
+import { useActions } from "../../utils/useActions";
+import { findMedia } from "../../utils/findMedia";
+import { audioPlay } from "../../utils/audioPlay";
 import {
   AudioIcon,
   Item,
@@ -8,16 +12,11 @@ import {
   Transcription,
   Word,
 } from "../../pages/start/StartPage.style";
-import { useActions } from "../../utils/useActions";
-import { useTypedSelector } from "../../utils/useTypedSelector";
-import { findMedia } from "../../utils/findMedia";
-import { audioPlay } from "../../utils/audioPlay";
 
 const WordsBar: React.FC = () => {
   const { words } = useTypedSelector((state) => state.words);
   const { isReturn } = useTypedSelector((state) => state.visible);
   const { recordWord } = useTypedSelector((state) => state.media);
-
   const {
     setTranslateAction,
     setImageAction,
@@ -49,7 +48,11 @@ const WordsBar: React.FC = () => {
         <Item
           key={item.id}
           onClick={() => mediaHandler(item)}
-          fill={recordWord === item.word ? "green" : "white"}
+          fill={
+            recordWord.toLowerCase() === item.word.toLowerCase()
+              ? "green"
+              : "white"
+          }
         >
           <AudioIcon>
             <Svg xmlns="http://www.w3.org/2000/svg">

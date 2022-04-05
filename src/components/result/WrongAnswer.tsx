@@ -1,4 +1,5 @@
 import React from "react";
+import { audioPlay } from "../../utils/audioPlay";
 import {
   AudioIconRes,
   ErrorNums,
@@ -6,7 +7,6 @@ import {
   ResWrap,
 } from "../../pages/results/ResultsPage.style";
 import { Svg, Transcription, Word } from "../../pages/start/StartPage.style";
-import { audioPlay } from "../../utils/audioPlay";
 
 const WrongAnswer: React.FC<{ wrong: any[] }> = ({ wrong }) => {
   return (

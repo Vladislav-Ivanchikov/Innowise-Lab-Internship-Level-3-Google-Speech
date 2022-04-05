@@ -165,6 +165,7 @@ export const Item = styled.div<ItemProp>`
 
   &:hover {
     box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    cursor: pointer;
   }
 `;
 
@@ -186,6 +187,11 @@ export const Word = styled.p`
   font-size: 22px;
   padding: 0 5px;
   margin: 0;
+`;
+
+export const Translate = styled(Word)`
+  height: 30px;
+  font-size: 18px;
 `;
 
 export const Transcription = styled(Word)`
@@ -217,12 +223,14 @@ export const Btn = styled.button`
 
   &:hover {
     background: #00c2b2;
+    cursor: pointer;
   }
 `;
 
 export const SpeakBtn = styled(Btn)`
   width: 660px;
   margin: 0 30px;
+  cursor: pointer;
 `;
 
 export const ResultsBtn = styled(Link)`

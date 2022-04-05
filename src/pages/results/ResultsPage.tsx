@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { ResContainer, ResLink, Results } from "./ResultsPage.style";
+import { Context } from "../../index";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 import { useActions } from "../../utils/useActions";
-import RightAnswer from "../../components/result/RightAnswer";
-import WrongAnswer from "../../components/result/WrongAnswer";
 import { IState } from "../../types/words";
-import { Context } from "../../index";
 import { setResId } from "../../store/action-creators/statisticActions";
 import { calculateStatistic } from "../../utils/calculateStatistic";
+import RightAnswer from "../../components/result/RightAnswer";
+import WrongAnswer from "../../components/result/WrongAnswer";
+import { ResContainer, ResLink, Results } from "./ResultsPage.style";
 
 const ResultsPage: React.FC = () => {
   const { result, wrong } = useTypedSelector((state: IState) => state.result);

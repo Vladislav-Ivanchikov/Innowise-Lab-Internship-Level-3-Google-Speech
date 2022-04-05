@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from "react";
-import { Btn, Container, Start } from "./StartPage.style";
 import { useDispatch } from "react-redux";
+import { setDoc, doc, getDocs, collection } from "firebase/firestore";
+import { Context } from "../../index";
+import { useTypedSelector } from "../../utils/useTypedSelector";
+import { useActions } from "../../utils/useActions";
 import { WordsActionsType } from "../../types/words";
 import NavBar from "../../components/nav/NavBar";
 import InfoBar from "../../components/info/InfoBar";
 import ImageBar from "../../components/image/ImageBar";
 import WordsBar from "../../components/words/WordsBar";
 import BtnBar from "../../components/btn/BtnBar";
-import { useTypedSelector } from "../../utils/useTypedSelector";
-import { useActions } from "../../utils/useActions";
-import { Context } from "../../index";
-import { setDoc, doc, getDocs, collection } from "firebase/firestore";
+import { Btn, Container, Start } from "./StartPage.style";
 
 const StartPage: React.FC = () => {
   const { startVisible, contentVisible, isReturn } = useTypedSelector(

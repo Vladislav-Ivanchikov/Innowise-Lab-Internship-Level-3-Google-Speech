@@ -1,4 +1,5 @@
 import React from "react";
+import { audioPlay } from "../../utils/audioPlay";
 import {
   AudioIconRes,
   ResItem,
@@ -6,7 +7,6 @@ import {
   SuccessNums,
 } from "../../pages/results/ResultsPage.style";
 import { Svg, Transcription, Word } from "../../pages/start/StartPage.style";
-import { audioPlay } from "../../utils/audioPlay";
 
 const RightAnswer: React.FC<{ right: any[] }> = ({ right }) => {
   return (

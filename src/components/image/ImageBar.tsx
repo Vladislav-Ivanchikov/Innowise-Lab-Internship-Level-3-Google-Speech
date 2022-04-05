@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
-import { Image, ImageWrap, WordInput } from "../../pages/start/StartPage.style";
 import { useTypedSelector } from "../../utils/useTypedSelector";
+import { IState, WordsType } from "../../types/words";
 import { useActions } from "../../utils/useActions";
 import { findMedia } from "../../utils/findMedia";
 import { findRecordWord } from "../../utils/findRecordWord";
-import { IState, WordsType } from "../../types/words";
+import {
+  Image,
+  ImageWrap,
+  Translate,
+  WordInput,
+} from "../../pages/start/StartPage.style";
 
 const ImageBar: React.FC = () => {
   const { imageSrc, activeTranslate, recordWord } = useTypedSelector(
@@ -14,19 +19,19 @@ const ImageBar: React.FC = () => {
   const { result } = useTypedSelector((state: IState) => state.result);
   const { setTranslateAction, setImageAction, addResult, pushWrong } =
     useActions();
-
   const wordsArr = words.map((item: WordsType) => ({
     word: item.word,
     transcription: item.transcription,
     audio: item.audio,
   }));
-
   const wrongArr = wordsArr.filter(
     ({ word: id1 }) => !result.some(({ word: id2 }) => id2 === id1)
   );
 
   useEffect(() => {
-    let repeat = result.some((item) => item.word === recordWord);
+    let repeat = result.some(
+      (item) => item.word.toLowerCase() === recordWord.toLowerCase()
+    );
     if (recordWord) {
       findMedia(recordWord, words, setTranslateAction, setImageAction);
       if (!repeat) {
@@ -49,7 +54,7 @@ const ImageBar: React.FC = () => {
         }
         alt=""
       />
-      <p>{activeTranslate}</p>
+      <Translate>{activeTranslate}</Translate>
       <WordInput type="text" value={recordWord} readOnly />
     </ImageWrap>
   );

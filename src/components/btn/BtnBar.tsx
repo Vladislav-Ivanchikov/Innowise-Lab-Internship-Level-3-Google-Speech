@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { WordsActionsType } from "../../types/words";
+import { useActions } from "../../utils/useActions";
 import {
   Btn,
   BtnWrap,
   ResultsBtn,
   SpeakBtn,
 } from "../../pages/start/StartPage.style";
-import { useDispatch } from "react-redux";
-import { WordsActionsType } from "../../types/words";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
-import { useActions } from "../../utils/useActions";
 
 const BtnBar: React.FC = () => {
   const dispatch = useDispatch();

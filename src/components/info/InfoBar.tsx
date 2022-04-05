@@ -8,9 +8,8 @@ import {
 } from "../../pages/start/StartPage.style";
 import { useDispatch } from "react-redux";
 import { IState, WordsActionsType } from "../../types/words";
-import { useTypedSelector } from "../../utils/useTypedSelector";
-
 import { Context } from "../../index";
+import { useTypedSelector } from "../../utils/useTypedSelector";
 import { useActions } from "../../utils/useActions";
 import { calculateStatistic } from "../../utils/calculateStatistic";
 
