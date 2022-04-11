@@ -70,7 +70,7 @@ const StartPage: React.FC = () => {
         <span>
           Click on the words to hear them sound.
           <br />
-          Click on the button and speak the words into the microphone.
+          Click on the button and speak the word into the microphone.
         </span>
         <Btn onClick={visibleHandler}>START</Btn>
       </Start>
