@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { WordsType } from "../../types/words";
 import { useTypedSelector } from "../../utils/useTypedSelector";
 import { useActions } from "../../utils/useActions";
@@ -26,6 +26,8 @@ const WordsBar: React.FC = () => {
     setReturn,
   } = useActions();
 
+  const [arrWithFill, setArrWithFill] = useState(words);
+
   const mediaHandler = (item: WordsType) => {
     setWordAction(item.word);
     findMedia(item.word, words, setTranslateAction, setImageAction);
@@ -40,19 +42,25 @@ const WordsBar: React.FC = () => {
       setTranslateAction("");
     }
     setReturn(false);
+    setArrWithFill(words);
   }, [words]);
+
+  useEffect(() => {
+    words.map(
+      (item: WordsType) =>
+        recordWord.toLowerCase() === item.word.toLowerCase() &&
+        (item.fill = true)
+    );
+    setArrWithFill(words);
+  }, [recordWord]);
 
   return (
     <Items>
-      {words.map((item: WordsType) => (
+      {arrWithFill.map((item: WordsType) => (
         <Item
           key={item.id}
           onClick={() => mediaHandler(item)}
-          fill={
-            recordWord.toLowerCase() === item.word.toLowerCase()
-              ? "green"
-              : "white"
-          }
+          fill={item.fill ? "green" : "white"}
         >
           <AudioIcon>
             <Svg xmlns="http://www.w3.org/2000/svg">

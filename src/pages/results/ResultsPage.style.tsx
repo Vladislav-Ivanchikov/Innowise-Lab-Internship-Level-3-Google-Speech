@@ -16,6 +16,22 @@ export const ResContainer = styled.div`
   box-shadow: 0 0 0 1px rgb(255 255 255 / 10%), 0 2px 4px 0 rgb(14 30 37 / 12%);
 `;
 
+export const ResList = styled.div`
+  width: 600px;
+  height: 550px;
+  overflow-y: scroll;
+  margin: 20px 0;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: #f9f9fd;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #234b34;
+  }
+`;
+
 export const ErrorNums = styled.span`
   background-color: #da5b4c;
   color: #fff;
@@ -49,20 +65,6 @@ export const AudioIconRes = styled(AudioIcon)`
 `;
 
 export const ResLink = styled(ResultsBtn)`
-  margin: 0 30px 0 0;
-  font-size: 20px;
-  padding: 10px 15px;
-  min-width: 160px;
-  color: rgba(14, 30, 37, 0.7);
-  background: transparent;
-  border: 1px solid rgba(14, 30, 37, 0.7);
-
-  &:hover {
-    background: rgba(180, 180, 180, 0.5);
-  }
-`;
-
-export const ReturnBtn = styled.button`
   margin: 0 30px 0 0;
   font-size: 20px;
   padding: 10px 15px;

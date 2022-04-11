@@ -6,6 +6,7 @@ import {
   ErrorNums,
   ResContainer,
   ResLink,
+  ResList,
   Results,
   SuccessNums,
 } from "../results/ResultsPage.style";
@@ -19,18 +20,20 @@ const StatisticPage: React.FC = () => {
     <Results visible={true}>
       <ResContainer>
         <h3>Users statistic</h3>
-        {usersRes &&
-          usersRes.map((item: UserStatType) => (
-            <StatRow key={item.id}>
-              <StatItem>{item.userName}</StatItem>
-              <StatItem>
-                <SuccessNums>{item.right}</SuccessNums> |
-                <ErrorNums>{item.wrong}</ErrorNums>
-              </StatItem>
-              <StatItem>{item.group.toString()}</StatItem>
-              <StatItem>{item.date}</StatItem>
-            </StatRow>
-          ))}
+        <ResList>
+          {usersRes &&
+            usersRes.map((item: UserStatType) => (
+              <StatRow key={item.id}>
+                <StatItem>{item.userName}</StatItem>
+                <StatItem>
+                  <SuccessNums>{item.right}</SuccessNums> |
+                  <ErrorNums>{item.wrong}</ErrorNums>
+                </StatItem>
+                <StatItem>{item.group.toString()}</StatItem>
+                <StatItem>{item.date}</StatItem>
+              </StatRow>
+            ))}
+        </ResList>
         <ResLink to="/">New game</ResLink>
       </ResContainer>
     </Results>

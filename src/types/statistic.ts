@@ -11,6 +11,7 @@ export interface UserStatType {
   group: number[];
   date: string;
   points: number;
+  pos?: number;
 }
 
 export enum StatisticActionType {

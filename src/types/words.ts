@@ -18,6 +18,7 @@ export interface WordsType {
   wordTranslate: undefined | string;
   image: undefined | string;
   audio: undefined | string;
+  fill?: boolean;
 }
 
 export interface WordsStateType {

@@ -139,7 +139,7 @@ export const Items = styled.div`
 `;
 
 interface ItemProp {
-  fill: string;
+  fill?: string;
 }
 
 export const Item = styled.div<ItemProp>`
