@@ -22,6 +22,7 @@ export const AppStyle = createGlobalStyle`
 
   h2 {
     margin-bottom: 15px;
+    color: aliceblue;
   }
 
   h3 {

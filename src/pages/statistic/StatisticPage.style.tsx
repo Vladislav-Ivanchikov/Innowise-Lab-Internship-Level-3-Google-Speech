@@ -8,6 +8,7 @@ export const StatRow = styled.div`
 
 export const StatItem = styled.div`
   padding: 10px;
-  width: 145px;
+  width: 100%;
+  min-width: 250px;
   text-align: center;
 `;

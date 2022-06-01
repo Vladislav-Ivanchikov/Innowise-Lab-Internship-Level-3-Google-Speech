@@ -1,21 +1,22 @@
-import React, { useContext } from "react";
-import { Context } from "../../index";
-import { useTypedSelector } from "../../utils/useTypedSelector";
-import { useActions } from "../../utils/useActions";
-import { IState } from "../../types/words";
-import { setResId } from "../../store/action-creators/statisticActions";
-import { calculateStatistic } from "../../utils/calculateStatistic";
+import React, {useContext} from "react";
+import {Context} from "../../index";
+import {useTypedSelector} from "../../utils/useTypedSelector";
+import {useActions} from "../../utils/useActions";
+import {IState} from "../../types/words";
+import {setResId} from "../../store/action-creators/statisticActions";
+import {calculateStatistic} from "../../utils/calculateStatistic";
 import RightAnswer from "../../components/result/RightAnswer";
 import WrongAnswer from "../../components/result/WrongAnswer";
-import { ResContainer, ResLink, Results } from "./ResultsPage.style";
+import {ResContainer, ResLink, Results} from "./ResultsPage.style";
 
 const ResultsPage: React.FC = () => {
-  const { result, wrong } = useTypedSelector((state: IState) => state.result);
-  const { resultVisible } = useTypedSelector((state) => state.visible);
-  const { level } = useTypedSelector((state) => state.words);
-  const { usersRes, statId } = useTypedSelector(
-    (state: IState) => state.statistic
+  const {result, wrong} = useTypedSelector((state: IState) => state.result);
+  const {resultVisible} = useTypedSelector((state) => state.visible);
+  const {level} = useTypedSelector((state) => state.words);
+  const {usersRes, statId} = useTypedSelector(
+      (state: IState) => state.statistic
   );
+
   const {
     setResultVisible,
     setContentVisible,
@@ -23,7 +24,9 @@ const ResultsPage: React.FC = () => {
     pushUsersRes,
     clearResults,
   } = useActions();
-  const { db } = useContext(Context);
+
+  const {db} = useContext(Context);
+
   const visibleHandler = () => {
     setResultVisible(false);
     setContentVisible(true);
@@ -33,37 +36,37 @@ const ResultsPage: React.FC = () => {
 
   const resultHandler = async () => {
     calculateStatistic(
-      db,
-      statId,
-      level,
-      usersRes,
-      result,
-      wrong,
-      dbArr,
-      pushUsersRes,
-      clearResults
+        db,
+        statId,
+        level,
+        usersRes,
+        result,
+        wrong,
+        dbArr,
+        pushUsersRes,
+        clearResults
     );
     setResId("");
   };
 
   return (
-    <Results visible={resultVisible}>
-      <ResContainer>
-        <RightAnswer right={result} />
-        <WrongAnswer wrong={wrong} />
-        <div>
-          <ResLink onClick={visibleHandler} to="/">
-            Return
-          </ResLink>
-          <ResLink to="/" onClick={() => pushUsersRes([])}>
-            New game
-          </ResLink>
-          <ResLink to="/statistic" onClick={resultHandler}>
-            Users statistic
-          </ResLink>
-        </div>
-      </ResContainer>
-    </Results>
+      <Results visible={resultVisible}>
+        <ResContainer>
+          <RightAnswer right={result}/>
+          <WrongAnswer wrong={wrong}/>
+          <div>
+            <ResLink onClick={visibleHandler} to="/">
+              Return
+            </ResLink>
+            <ResLink to="/" onClick={() => pushUsersRes([])}>
+              New game
+            </ResLink>
+            <ResLink to="/statistic" onClick={resultHandler}>
+              Users statistic
+            </ResLink>
+          </div>
+        </ResContainer>
+      </Results>
   );
 };
 

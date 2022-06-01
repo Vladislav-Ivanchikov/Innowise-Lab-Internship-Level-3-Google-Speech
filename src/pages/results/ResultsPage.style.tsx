@@ -7,7 +7,7 @@ export const Results = styled(Start)`
 
 export const ResContainer = styled.div`
   width: 100%;
-  max-width: 780px;
+  min-width: 780px;
   min-height: 600px;
   padding: 30px 100px;
   text-align: left;
@@ -17,7 +17,7 @@ export const ResContainer = styled.div`
 `;
 
 export const ResList = styled.div`
-  width: 600px;
+  width: 100%;
   height: 550px;
   overflow-y: scroll;
   margin: 20px 0;
