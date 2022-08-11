@@ -8,10 +8,7 @@ In the project directory, you can run:
 
 ## Description
 
-This app gives you the ability to create notes from today to the same date next month. You can mark completed tasks and
-view them in the calendar. If you only have uncompleted tasks for some date, you can see one dark dot under that date.
-If all your tasks are completed on some date, you can see a colored dot under that date. If you have both statuses, you
-can see two dots under the date with these tasks. You can also edit and delete your note.
+This app provides you the opportunity to learn how to pronounce most English words. You shall register or login then you click the "Speak" button and start pronouncing displayed words. If the word sounds right, the cell with the word fills green. Below your email you can see dots. This is levels: first dot - easiest words, last dot - hardest words. When you finish a level or whole game you can view your results by level or game. You can have a competition with other users, application calculating points after your game and you can view which place you take in the leaderboard.
 
 ## Stack
 
