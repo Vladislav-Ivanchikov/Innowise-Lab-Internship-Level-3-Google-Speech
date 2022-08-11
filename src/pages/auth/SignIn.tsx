@@ -71,7 +71,9 @@ const SignIn: React.FC = (): JSX.Element => {
       <div>
         <p>
           If you have not account, you can create{" "}
-          <Link to="/registration">create account</Link>
+          <Link style={{ color: "white" }} to="/registration">
+            create account
+          </Link>
         </p>
       </div>
     </Start>

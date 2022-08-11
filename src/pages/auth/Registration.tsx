@@ -72,7 +72,10 @@ const Registration: React.FC = () => {
       </form>
       <div>
         <p>
-          If you have account, you can <Link to="/signin">log in</Link>
+          If you have account, you can{" "}
+          <Link style={{ color: "white" }} to="/signin">
+            log in
+          </Link>
         </p>
       </div>
     </Start>
