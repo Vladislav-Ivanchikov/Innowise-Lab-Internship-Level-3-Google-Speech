@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { getFirestore } from "firebase/firestore";
 import App from "./components/app/App";
+import { isAsyncFunction } from "util/types";
 
 export const Context: React.Context<any> = createContext(null);
 
@@ -29,3 +30,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
+// deploy
